@@ -1,3 +1,4 @@
+package ws_2;
 
 public class linkedList
 {

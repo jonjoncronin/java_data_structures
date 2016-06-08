@@ -1,4 +1,4 @@
-
+package ws_2;
 public class ListNode
 {
    Object data;
