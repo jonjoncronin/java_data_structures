@@ -1,5 +1,9 @@
-package src.linkedList;
-import static org.junit.Assert.assertTrue;
+/**
+ * 
+ */
+package linkedList;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**
@@ -10,25 +14,7 @@ public class ListNodeTest
 {
 
    /**
-    * Test method for {@link ListNode#equals(ListNode)}.
-    */
-   
-   @Test
-   public void testEquals()
-   {
-      Integer anObject = new Integer(1);
-      Integer otherObject = new Integer(2);
-      ListNode someNode = new ListNode();
-      ListNode otherNode = new ListNode();
-      assertTrue(otherNode.equals(someNode) == true);
-      someNode.setNodeData(anObject);
-      assertTrue(otherNode.equals(someNode) == false);
-      otherNode.setNodeData(otherObject);
-      assertTrue(otherNode.equals(someNode) == false);
-   }
-   
-   /**
-    * Test method for {@link ListNode#ListNode()}.
+    * Test method for {@link linkedList.ListNode#ListNode()}.
     */
    @Test
    public void testListNode()
@@ -39,10 +25,10 @@ public class ListNodeTest
    }
 
    /**
-    * Test method for {@link ListNode#ListNode(Object)}.
+    * Test method for {@link linkedList.ListNode#ListNode(java.lang.Object)}.
     */
    @Test
-   public void testListNodeInt()
+   public void testListNodeObject()
    {
       Integer someObject = new Integer(5);
       ListNode someNode = new ListNode();
@@ -53,10 +39,10 @@ public class ListNodeTest
    }
 
    /**
-    * Test method for {@link ListNode#ListNode(Object, ListNode)}.
+    * Test method for {@link linkedList.ListNode#ListNode(java.lang.Object, linkedList.ListNode)}.
     */
    @Test
-   public void testListNodeIntListNode()
+   public void testListNodeObjectListNode()
    {
       Integer someObject = new Integer(5);
       ListNode otherNode = new ListNode();
@@ -67,7 +53,7 @@ public class ListNodeTest
    }
 
    /**
-    * Test method for {@link ListNode#getNodeData()}.
+    * Test method for {@link linkedList.ListNode#getNodeData()}.
     */
    @Test
    public void testGetNodeData()
@@ -78,10 +64,10 @@ public class ListNodeTest
    }
 
    /**
-    * Test method for {@link ListNode#setNodeData(int)}.
+    * Test method for {@link linkedList.ListNode#setNodeData(java.lang.Object)}.
     */
    @Test
-   public void testSetNodeDataInt()
+   public void testSetNodeData()
    {
       Integer someObject = new Integer(5);
       ListNode someNode = new ListNode();
@@ -90,7 +76,7 @@ public class ListNodeTest
    }
 
    /**
-    * Test method for {@link ListNode#getNodeNext()}.
+    * Test method for {@link linkedList.ListNode#getNodeNext()}.
     */
    @Test
    public void testGetNodeNext()
@@ -102,7 +88,7 @@ public class ListNodeTest
    }
 
    /**
-    * Test method for {@link ListNode#setNodeNext(ListNode)}.
+    * Test method for {@link linkedList.ListNode#setNodeNext(linkedList.ListNode)}.
     */
    @Test
    public void testSetNodeNext()
@@ -114,6 +100,22 @@ public class ListNodeTest
       assertTrue(otherNode.setNodeNext(otherNode) == false);
       assertTrue(otherNode.getNodeNext() == someNode);
    }
-   
+
+   /**
+    * Test method for {@link linkedList.ListNode#equals(linkedList.ListNode)}.
+    */
+   @Test
+   public void testEqualsListNode()
+   {
+      Integer anObject = new Integer(1);
+      Integer otherObject = new Integer(2);
+      ListNode someNode = new ListNode();
+      ListNode otherNode = new ListNode();
+      assertTrue(otherNode.equals(someNode) == true);
+      someNode.setNodeData(anObject);
+      assertTrue(otherNode.equals(someNode) == false);
+      otherNode.setNodeData(otherObject);
+      assertTrue(otherNode.equals(someNode) == false);
+   }
 
 }

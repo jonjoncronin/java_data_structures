@@ -1,5 +1,6 @@
-package src.linkedList;
-public class ListNode
+package linkedList;
+
+class ListNode
 {
    Object data;
    ListNode next;
