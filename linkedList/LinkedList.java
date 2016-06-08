@@ -45,7 +45,7 @@ public class LinkedList
          {
             this.head = someNode;
             this.length++;
-            return 1;   
+            return this.length;   
          }
          else
          {
@@ -74,7 +74,7 @@ public class LinkedList
          {
             this.tail = someNode;
             this.length++;
-            return 1;
+            return this.length;
          }
          else
          {
