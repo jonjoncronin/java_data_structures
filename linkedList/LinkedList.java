@@ -1,13 +1,13 @@
-package ws_2;
+package src.linkedList;
 
-public class linkedList
+public class LinkedList
 {
    int length;
    int maxSize;
    ListNode head;
    ListNode tail;
 
-   public linkedList()
+   public LinkedList()
    {
       this.length = 0;
       this.maxSize = 10;
@@ -15,7 +15,7 @@ public class linkedList
       this.tail = null;
    }
 
-   public linkedList(int maxSize)
+   public LinkedList(int maxSize)
    {
       this.length = 0;
       this.maxSize = maxSize;

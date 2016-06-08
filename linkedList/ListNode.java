@@ -1,4 +1,4 @@
-package ws_2;
+package src.linkedList;
 public class ListNode
 {
    Object data;
