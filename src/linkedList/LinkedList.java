@@ -74,15 +74,19 @@ public class LinkedList
       }
       if(this.length < this.maxSize)
       {
-         if(this.tail.setNodeNext(someNode))
-         {
+         if (this.tail != null) {
+            if (this.tail.setNodeNext(someNode)) {
+                this.tail = someNode;
+                this.length++;
+                return this.length;
+            } else {
+                return -1;
+            }
+         } else {
             this.tail = someNode;
+            this.head = someNode;
             this.length++;
             return this.length;
-         }
-         else
-         {
-            return -1;
          }
       }
       else

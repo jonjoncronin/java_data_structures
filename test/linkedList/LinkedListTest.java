@@ -51,7 +51,17 @@ public class LinkedListTest
    @Test
    public void testGetMaxSize()
    {
-      fail("Not yet implemented");
+      LinkedList maxLL = new LinkedList(Integer.MAX_VALUE);
+      LinkedList minLL = new LinkedList(Integer.MIN_VALUE);
+      LinkedList zeroLL = new LinkedList(0);
+      LinkedList lessThanTenLL = new LinkedList(5);
+      LinkedList overTenLL = new LinkedList(5000);
+      
+      assertTrue(maxLL.maxSize == Integer.MAX_VALUE);
+      assertTrue(minLL.maxSize == 10);
+      assertTrue(zeroLL.maxSize == 10);
+      assertTrue(lessThanTenLL.maxSize == 5);
+      assertTrue(overTenLL.maxSize == 5000);
    }
 
    /**
@@ -60,7 +70,55 @@ public class LinkedListTest
    @Test
    public void testGetLength()
    {
-      fail("Not yet implemented");
+      LinkedList testHeadLL = new LinkedList(3);
+      LinkedList testTailLL = new LinkedList(4);
+      ListNode testNode = null;
+      int retVal;
+      
+      retVal = testHeadLL.addEntryToHead(testNode);
+      assertTrue(retVal == -1);
+      retVal = testTailLL.addEntryToTail(testNode);
+      assertTrue(retVal == -1);
+      
+      testNode = new ListNode(5);
+      retVal = testHeadLL.addEntryToHead(testNode);
+      assertTrue(retVal == 1);
+      retVal = testTailLL.addEntryToTail(testNode);
+      assertTrue(retVal == 1);
+      assertTrue(testHeadLL.length == 1);
+      assertTrue(testTailLL.length == 1);
+      
+      testNode = new ListNode(3);
+      retVal = testHeadLL.addEntryToHead(testNode);
+      assertTrue(retVal == 2);
+      retVal = testTailLL.addEntryToTail(testNode);
+      assertTrue(retVal == 2);
+      assertTrue(testHeadLL.length == 2);
+      assertTrue(testTailLL.length == 2);
+      
+      testNode = new ListNode(7);
+      retVal = testHeadLL.addEntryToHead(testNode);
+      assertTrue(retVal == 3);
+      retVal = testTailLL.addEntryToTail(testNode);
+      assertTrue(retVal == 3);
+      assertTrue(testHeadLL.length == 3);
+      assertTrue(testTailLL.length == 3);
+      
+      testNode = new ListNode(8);
+      retVal = testHeadLL.addEntryToHead(testNode);
+      assertTrue(retVal == 0);
+      retVal = testTailLL.addEntryToTail(testNode);
+      assertTrue(retVal == 4);
+      assertTrue(testHeadLL.length == 3);
+      assertTrue(testTailLL.length== 4);
+      
+      testNode = new ListNode(10);
+      retVal = testHeadLL.addEntryToHead(testNode);
+      assertTrue(retVal == 0);
+      retVal = testTailLL.addEntryToTail(testNode);
+      assertTrue(retVal == 0);
+      assertTrue(testHeadLL.length == 3);
+      assertTrue(testTailLL.length == 4);
    }
 
    /**
@@ -69,7 +127,9 @@ public class LinkedListTest
    @Test
    public void testAddEntryToHead()
    {
-      fail("Not yet implemented");
+      //fail("Not yet implemented");
+      //tested along with testGetLength(). Leaving test case here but passing
+      // in case it turns into something later.
    }
 
    /**
@@ -78,7 +138,9 @@ public class LinkedListTest
    @Test
    public void testAddEntryToTail()
    {
-      fail("Not yet implemented");
+      //fail("Not yet implemented");
+      //tested along with testGetLength(). Leaving test case here but passing
+      // in case it turns into something later.
    }
 
 }
