@@ -109,13 +109,16 @@ public class ListNodeTest
    {
       Integer anObject = new Integer(1);
       Integer otherObject = new Integer(2);
+      Integer yetAnotherObject = new Integer(2);
       ListNode someNode = new ListNode();
       ListNode otherNode = new ListNode();
-      assertTrue(otherNode.equals(someNode) == true);
+      assertTrue(otherNode.equals(someNode) == false);
       someNode.setNodeData(anObject);
       assertTrue(otherNode.equals(someNode) == false);
       otherNode.setNodeData(otherObject);
       assertTrue(otherNode.equals(someNode) == false);
+      someNode.setNodeData(yetAnotherObject);
+      assertTrue(otherNode.equals(someNode) == true);
    }
 
 }

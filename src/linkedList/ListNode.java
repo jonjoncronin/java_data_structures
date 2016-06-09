@@ -50,13 +50,7 @@ class ListNode
 
    public boolean equals(ListNode someNode)
    {
-      if(someNode.data == null &&
-            this.data == null)
-      {
-         return true;
-      }
-      else if(someNode.data == null ||
-            this.data == null)
+      if(this.data == null)
       {
          return false;
       }

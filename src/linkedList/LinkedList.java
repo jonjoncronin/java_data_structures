@@ -39,7 +39,7 @@ public class LinkedList
 
    public int addEntryToHead(ListNode someNode)
    {
-      if(someNode == null)
+      if(someNode.getNodeNext() != null)
       {
          return -1;
       }
@@ -64,29 +64,30 @@ public class LinkedList
    
    public int addEntryToTail(ListNode someNode)
    {
-      if(someNode == null)
-      {
-         return -1;
-      }
       if(someNode.getNodeNext() != null)
       {
          return -1;
       }
       if(this.length < this.maxSize)
       {
-         if (this.tail != null) {
-            if (this.tail.setNodeNext(someNode)) {
-                this.tail = someNode;
-                this.length++;
-                return this.length;
-            } else {
-                return -1;
-            }
-         } else {
+         if(this.tail == null)
+         {
+            /* we have an empty list */
+            this.head = someNode;
             this.tail = someNode;
             this.head = someNode;
             this.length++;
             return this.length;
+         }
+         else if(this.tail.setNodeNext(someNode))
+         {
+            this.tail = someNode;
+            this.length++;
+            return this.length;
+         }
+         else
+         {
+            return -1;
          }
       }
       else
