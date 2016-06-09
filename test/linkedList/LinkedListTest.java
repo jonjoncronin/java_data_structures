@@ -20,7 +20,11 @@ public class LinkedListTest
    @Test
    public void testLinkedList()
    {
-      fail("Not yet implemented");
+      LinkedList testLL = new LinkedList();
+      assertTrue(testLL.length == 0);
+      assertTrue(testLL.maxSize == 10);
+      assertTrue(testLL.head == null);
+      assertTrue(testLL.tail == null);
    }
 
    /**
@@ -29,7 +33,16 @@ public class LinkedListTest
    @Test
    public void testLinkedListInt()
    {
-      fail("Not yet implemented");
+      LinkedList negativeLL = new LinkedList(-100);
+      LinkedList goodLL = new LinkedList(100);
+      assertTrue(negativeLL.maxSize == 10);
+      assertTrue(negativeLL.head == null);
+      assertTrue(negativeLL.tail == null);
+      assertTrue(negativeLL.length == 0);
+      assertTrue(goodLL.maxSize == 100);
+      assertTrue(goodLL.head == null);
+      assertTrue(goodLL.tail == null);
+      assertTrue(goodLL.length == 0);
    }
 
    /**
