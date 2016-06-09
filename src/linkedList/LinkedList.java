@@ -18,7 +18,11 @@ public class LinkedList
    public LinkedList(int maxSize)
    {
       this.length = 0;
-      this.maxSize = maxSize;
+      if (maxSize > 0) {
+        this.maxSize = maxSize;
+      } else {
+          this.maxSize = 10;
+      }
       this.head = null;
       this.tail = null;
    }
