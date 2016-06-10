@@ -195,4 +195,21 @@ public class LinkedListTest
       //System.out.println(someList.toString());
       assertTrue(result == 0);
    }
+   
+   /**
+    * Test method for {@link linkedList.LinkedList#toString()}
+    * on an empty list.
+    */
+   @Test
+   public void testToStringEmptyList()
+   {
+      String expectedOutput = "This list of size 0 contains  \n" +
+                              "nothing\n";
+      int result;
+      /* create a list of 10 elements */
+      LinkedList someList = new LinkedList();
+      result = expectedOutput.compareTo(someList.toString());
+      //System.out.println(someList.toString());
+      assertTrue(result == 0);
+   }
 }

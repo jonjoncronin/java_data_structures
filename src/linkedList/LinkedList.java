@@ -103,7 +103,7 @@ public class LinkedList
       output.append("This list of size " + this.length + " contains  \n");
       if(this.head == null)
       {
-         output.append("nothing ");
+         output.append("nothing\n");
          return output.toString();
       }
       while(curNode != null)
