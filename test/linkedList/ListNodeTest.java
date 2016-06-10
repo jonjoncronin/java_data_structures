@@ -122,7 +122,7 @@ public class ListNodeTest
    }
 
    /**
-    * Test method for {@link linkedList.ListNode#equals(linkedList.ListNode)}.
+    * Test method for {@link linkedList.ListNode#toString()}.
     */
    @Test
    public void testToString()
