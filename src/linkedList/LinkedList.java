@@ -95,4 +95,70 @@ public class LinkedList
          return 0;
       }
    }
+   
+   public String toString()
+   {
+      ListNode curNode = this.head;
+      StringBuilder output = new StringBuilder();
+      output.append("This list of size " + this.length + " contains  \n");
+      if(this.head == null)
+      {
+         output.append("nothing ");
+         return output.toString();
+      }
+      while(curNode != null)
+      {
+         output.append(curNode.toString() + "\n");
+         curNode = curNode.next;
+      }
+      return output.toString();
+   }
+//   public int addInOrderLargeFirst(ListNode someNode)
+//   {
+//      ListNode curNode = this.head;
+//      int result;
+//      while(curNode != null)
+//      {
+//         result = curNode.equals(someNode);
+//         if(result)
+//         {
+//            return 0;
+//         }
+//        
+//      }
+//   }
+   
+//   public int addInOrderSmallFirst(ListNode someNode)
+//   {
+//      
+//   }
+//   public int removeEntry(ListNode someNode)
+//   {
+//      ListNode prevNode;
+//      prevNode = this.findPreviousNode(someNode);
+//      if(prevNode != null)
+//      {
+//         prevNode.setNodeNext(someNode.getNodeNext());
+//         someNode.next = null;
+//         someNode.data = 0;
+//         return 1;
+//      }
+//      return -1;
+//   }
+//   
+//   private ListNode findPreviousNode(ListNode someNode)
+//   {
+//      ListNode curNode = this.head;
+//      ListNode prevNode = this.head;
+//      while(curNode != null)
+//      {
+//         if(someNode == curNode)
+//         {
+//            return prevNode;
+//         }
+//         prevNode = curNode;
+//         curNode = curNode.getNodeNext();
+//      }
+//      return null;
+//   }
 }
