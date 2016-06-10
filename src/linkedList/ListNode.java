@@ -58,6 +58,10 @@ class ListNode
       {
          return someNode.data.equals(this.data);
       }
-
+   }
+   
+   public String toString()
+   {
+      return ("Data: " + this.data.toString());
    }
 }

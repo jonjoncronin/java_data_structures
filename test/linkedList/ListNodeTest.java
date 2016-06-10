@@ -121,4 +121,26 @@ public class ListNodeTest
       assertTrue(otherNode.equals(someNode) == true);
    }
 
+   /**
+    * Test method for {@link linkedList.ListNode#toString()}.
+    */
+   @Test
+   public void testToString()
+   {
+      Integer anObject = new Integer(100);
+      String aString = new String("TestString");
+      ListNode someNode = new ListNode(anObject);
+      ListNode otherNode = new ListNode(aString);
+      int result;
+      String output2 = someNode.toString();
+      String output3 = otherNode.toString();
+      
+      result = output2.compareTo("Data: 100");
+      assertTrue(result == 0);
+      result = output3.compareTo("Data: TestString");
+      assertTrue(result == 0);
+      
+      //System.out.println(someNode.toString());
+      //System.out.println(otherNode.toString());
+   }
 }
