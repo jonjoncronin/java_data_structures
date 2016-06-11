@@ -113,25 +113,34 @@ public class LinkedList
       }
       return output.toString();
    }
-//   public int addInOrderLargeFirst(ListNode someNode)
-//   {
-//      ListNode curNode = this.head;
-//      int result;
-//      while(curNode != null)
-//      {
-//         result = curNode.equals(someNode);
-//         if(result)
-//         {
-//            return 0;
-//         }
-//        
-//      }
-//   }
    
-//   public int addInOrderSmallFirst(ListNode someNode)
-//   {
-//      
-//   }
+   /*
+    * equals checks to make sure that the 2 lists are exactly the same - 
+    * same length, same maxSize and same order of elements
+    */
+   public boolean equals(LinkedList someList)
+   {
+      ListNode thisCurNode = this.head;
+      ListNode someCurNode = someList.head;
+      if(someList.length == this.length &&
+         someList.maxSize == this.maxSize)
+      {
+         while(thisCurNode != null)
+         {
+            if(!thisCurNode.equals(someCurNode))
+            {
+               return false;
+            }
+            thisCurNode = thisCurNode.next;
+            someCurNode = someCurNode.next;
+         }
+      }
+      else
+      {
+         return false;
+      }
+      return true;
+   }
 //   public int removeEntry(ListNode someNode)
 //   {
 //      ListNode prevNode;

@@ -192,7 +192,6 @@ public class LinkedListTest
          someList.addEntryToHead(nodeArray[ii]);
       }
       result = expectedOutput.compareTo(someList.toString());
-      //System.out.println(someList.toString());
       assertTrue(result == 0);
    }
    
@@ -209,7 +208,89 @@ public class LinkedListTest
       /* create a list of 10 elements */
       LinkedList someList = new LinkedList();
       result = expectedOutput.compareTo(someList.toString());
-      //System.out.println(someList.toString());
       assertTrue(result == 0);
+   }
+   
+   /**
+    * Test method for {@link linkedList.LinkedList#equals(linkedList.LinkedList)}
+    * testing that 2 lists equal each other.
+    */
+   @Test
+   public void testEqualsTrue()
+   {
+      boolean result;
+      /* create a list of 10 elements */
+      LinkedList someList = new LinkedList();
+      LinkedList otherList = new LinkedList();
+      Integer[] objectArray = {100, 101, 102, 
+                               103, 104, 105, 
+                               106, 107, 108, 
+                               109};
+      ListNode[] nodeArray1 = new ListNode[10];
+      ListNode[] nodeArray2 = new ListNode[10];
+      for(int ii = 0; ii < objectArray.length; ii++)
+      {
+         /* insert Integer Objects into the linked list in order that they are 
+          * in the array. This will result in a reverse order for the list. 
+          * We need 2 separate arrays of ListNodes because the LinkedList class
+          * expects that ListNodes being inserted into a LinkedList are not 
+          * part of another list - that their listNode.next parameter is null.
+          */
+         nodeArray1[ii] = new ListNode(objectArray[ii]);
+         nodeArray2[ii] = new ListNode(objectArray[ii]);
+         
+         someList.addEntryToHead(nodeArray1[ii]);
+         otherList.addEntryToHead(nodeArray2[ii]);
+      }
+      
+      result = someList.equals(otherList);
+      assertTrue(result == true);
+   }
+   
+   /**
+    * Test method for {@link linkedList.LinkedList#equals(linkedList.LinkedList)}
+    * testing that 2 lists do not equal each other.
+    */
+   @Test
+   public void testEqualsFalse()
+   {
+      boolean result;
+      /* create a list of 10 elements */
+      LinkedList someList = new LinkedList();
+      LinkedList otherList = new LinkedList();
+      LinkedList bigList = new LinkedList(20);
+      LinkedList emptyList = new LinkedList();
+      Integer[] objectArray = {100, 101, 102, 
+                               103, 104, 105, 
+                               106, 107, 108, 
+                               109};
+      ListNode[] nodeArray1 = new ListNode[10];
+      ListNode[] nodeArray2 = new ListNode[10];
+      ListNode[] nodeArray3 = new ListNode[10];
+      for(int ii = 0; ii < objectArray.length; ii++)
+      {
+         /* insert Integer Objects into the linked list in order that they are 
+          * in the array. This will result in a reverse order for the list.
+          * for the other list add them into the list from the tail side - 
+          * resulting in order that we see it defined above.
+          * We need 2 separate arrays of ListNodes because the LinkedList class
+          * expects that ListNodes being inserted into a LinkedList are not 
+          * part of another list - that their listNode.next parameter is null.
+          */
+         nodeArray1[ii] = new ListNode(objectArray[ii]);
+         nodeArray2[ii] = new ListNode(objectArray[ii]);
+         nodeArray3[ii] = new ListNode(objectArray[ii]);
+         
+         someList.addEntryToHead(nodeArray1[ii]);
+         otherList.addEntryToTail(nodeArray2[ii]);
+         bigList.addEntryToHead(nodeArray3[ii]);
+      }
+      
+      result = someList.equals(otherList);
+      assertTrue(result == false);
+      result = someList.equals(bigList);
+      assertTrue(result == false);
+      result = someList.equals(emptyList);
+      assertTrue(result == false);
    }
 }

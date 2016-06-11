@@ -139,8 +139,5 @@ public class ListNodeTest
       assertTrue(result == 0);
       result = output3.compareTo("Data: TestString");
       assertTrue(result == 0);
-      
-      //System.out.println(someNode.toString());
-      //System.out.println(otherNode.toString());
    }
 }
