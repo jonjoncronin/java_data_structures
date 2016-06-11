@@ -1,9 +1,9 @@
 package linkedList;
 
-class ListNode
+public class ListNode
 {
-   Object data;
-   ListNode next;
+   public Object data;
+   public ListNode next;
 
    public ListNode()
    {
@@ -60,4 +60,9 @@ class ListNode
       }
 
    }
+   
+   public String toString()
+   {
+      return ("Data: " + this.data.toString());
+   }		     
 }
