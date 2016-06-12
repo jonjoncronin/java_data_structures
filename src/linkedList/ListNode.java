@@ -123,10 +123,5 @@ public class ListNode
    public String toString()
    {
       return ("Data: " + this.data.toString());
-   }
-   
-   public String toString()
-   {
-      return ("Data: " + this.data.toString());
    }		     
 }
