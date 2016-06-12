@@ -8,6 +8,7 @@ package queue;
 import junit.framework.TestCase;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import java.lang.Integer;
 
 /**
  *
@@ -20,8 +21,23 @@ public class QueueTest extends TestCase {
     }
 
     public void testQueue() {
-        /*Queue myQ = new Queue();
-        assertTrue(myQ.nextNode == null);
-        assert*/
+        Queue myQ = new Queue();
+        //assertTrue(myQ.getHead() == null);
+        //assertTrue(myQ.getTail() == null);
+        assertTrue(myQ.deque() == null);
+        assertTrue(myQ.getCapacity() == 10);
+        assertTrue(myQ.getSize() == 0);
     }
+    
+    public void testEnqueDeque() {
+        Queue myQ = new Queue();
+        QueueNode<Integer> node1 = new QueueNode<>(42);
+        QueueNode<Integer> node2 = new QueueNode<>(-5);
+        myQ.enque(node1);
+        myQ.enque(node2);
+        assertTrue((Integer)myQ.deque().getElement() == 42);
+        assertTrue((Integer)myQ.deque().getElement() == -5);
+    }
+    
+    
 }
