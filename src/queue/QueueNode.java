@@ -12,11 +12,23 @@ package queue;
  * @author Scott McDonald
  */
 public class QueueNode<E> {
-    protected E element;
-    protected QueueNode nextNode;
+    private E element;
+    private QueueNode nextNode;
     
     public QueueNode(E element) {
         this.element = element;
         nextNode = null;
+    }
+    
+    public E getElement() {
+        return element;
+    }
+    
+    public QueueNode getNextNode() {
+        return nextNode;
+    }
+    
+    public void setNextNode(QueueNode next) {
+        this.nextNode = next;
     }
 }
