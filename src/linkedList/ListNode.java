@@ -124,4 +124,9 @@ public class ListNode
    {
       return ("Data: " + this.data.toString());
    }
+   
+   public String toString()
+   {
+      return ("Data: " + this.data.toString());
+   }		     
 }
