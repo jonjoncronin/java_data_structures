@@ -22,6 +22,7 @@ public class Queue {
     public static final int Q_SUCCESS = 0;
     public static final int Q_ERR_NULL = -1;
     public static final int Q_ERR_FULL = -2;
+    public static final int Q_ERR_NEXT_NODE = -3;
     
     /**
      * Default constructor. Sets head and tail to null, max capacity to 10 and
@@ -54,6 +55,10 @@ public class Queue {
     public int enque(QueueNode node) {
         if (node == null) {
             return Q_ERR_NULL;
+        }
+        
+        if (node.getNextNode() != null) {
+            return Q_ERR_NEXT_NODE;
         }
         
         // if capacity is less then 0 then we don't check the size, we let

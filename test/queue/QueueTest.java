@@ -97,6 +97,12 @@ public class QueueTest extends TestCase {
                 assertTrue(node == null);
             }
         }
+        
+        // Verify that enque rejects nodes that already have a next element
+        node = new QueueNode<>(42);
+        node.setNextNode(new QueueNode<>(10));
+        enQRetVal = myQ.enque(node);
+        assertTrue(enQRetVal == Queue.Q_ERR_NEXT_NODE);
     }
     
     
