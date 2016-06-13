@@ -26,8 +26,13 @@ public class QueueNodeTest extends TestCase {
      */
     public void testQueueNode() {
         QueueNode<Integer> myNode = new QueueNode<>(42);
-        assertTrue(myNode.getElement() == 42);
-        assertTrue(myNode.getNextNode() == null);
+        int retVal;
+        retVal = myNode.getElement();
+        QueueNode nextNode;
+        nextNode = myNode.getNextNode();
+        
+        assertTrue(retVal == 42);
+        assertTrue(nextNode == null);
     }
     
     /**
@@ -37,6 +42,8 @@ public class QueueNodeTest extends TestCase {
         QueueNode<Integer> node1 = new QueueNode<>(4);
         QueueNode<Integer> node2 = new QueueNode<>(7);
         node1.setNextNode(node2);
-        assertTrue(node1.getNextNode() == node2);
+        
+        QueueNode nextNode = node1.getNextNode();
+        assertTrue(nextNode == node2);
     }
 }

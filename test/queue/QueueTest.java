@@ -28,12 +28,21 @@ public class QueueTest extends TestCase {
     public void testQueue() {
         Queue myQ = new Queue();
         Queue myQSize = new Queue(20);
-        assertTrue(myQ.deque() == null);
-        assertTrue(myQ.getCapacity() == 10);
-        assertTrue(myQ.getSize() == 0);
-        assertTrue(myQSize.deque() == null);
-        assertTrue(myQSize.getCapacity() == 20);
-        assertTrue(myQSize.getSize() == 0);
+        QueueNode node = myQ.deque();
+        int capacity, size;
+        
+        capacity = myQ.getCapacity();
+        size = myQ.getSize();
+        assertTrue(node == null);
+        assertTrue(capacity == 10);
+        assertTrue(size == 0);
+        
+        node = myQSize.deque();
+        capacity = myQSize.getCapacity();
+        size = myQSize.getSize();
+        assertTrue(node == null);
+        assertTrue(capacity == 20);
+        assertTrue(size == 0);
         
         
     }
@@ -70,8 +79,10 @@ public class QueueTest extends TestCase {
         // order.
         for (int ii=0; ii<11; ii++) {
             node = myQ.deque();
+            int element;
             if (ii<10) {
-                assertTrue(node.getElement() == ii);
+                element = node.getElement();
+                assertTrue(element == ii);
             } else {
                 assertTrue(node == null);
             }
@@ -91,8 +102,10 @@ public class QueueTest extends TestCase {
         // order.
         for (int ii=0; ii<31; ii++) {
             node = myQ.deque();
+            int element;
             if (ii<30) {
-                assertTrue(node.getElement() == ii);
+                element = node.getElement();
+                assertTrue(element == ii);
             } else {
                 assertTrue(node == null);
             }
