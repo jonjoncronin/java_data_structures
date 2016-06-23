@@ -8,9 +8,9 @@ package linkedList;
  * 
  * @author Jon Cronin and Scott McDonald
  */
-public class ListNode
+public class ListNode<E>
 {
-   public Object data;
+   public E data;
    public ListNode next;
 
    /**
@@ -25,9 +25,9 @@ public class ListNode
    /**
     * Overloaded constructor to allow you to specify the data of a ListNode
     * 
-    * @param data The Object you want stored as the data of the ListNode 
+    * @param data The element/object you want stored as the data of the ListNode 
     */
-   public ListNode(Object data)
+   public ListNode(E data)
    {
       this.data = data;
       this.next = null;
@@ -37,10 +37,10 @@ public class ListNode
     * Overloaded constructor to allow you to specify the data as well as the
     * next ListNode that a ListNode will contain.
     * 
-    * @param data The Object you want stored as the data of the ListNode
+    * @param data The element/object you want stored as the data of the ListNode
     * @param next The next ListNode that you want stored as the next of the ListNode
     */
-   public ListNode(Object data, ListNode next)
+   public ListNode(E data, ListNode next)
    {
       this.data = data;
       this.next = next;
@@ -51,7 +51,7 @@ public class ListNode
     * 
     * @return The Object stored as the data of the ListNode. 
     */
-   public Object getNodeData()
+   public E getNodeData()
    {
       return this.data;
    }
@@ -62,7 +62,7 @@ public class ListNode
     * @param data The object that you want stored as the data of the ListNode
     * @return true or false that the object was stored.
     */
-   public boolean setNodeData(Object data)
+   public boolean setNodeData(E data)
    {
       this.data = data;
       return true;
