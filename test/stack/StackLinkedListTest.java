@@ -5,7 +5,6 @@
  */
 package stack;
 
-import linkedList.*; // reusing the ListNode class
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -22,9 +21,16 @@ public class StackLinkedListTest
    public void testStackLinkedList()
    {
       StackLinkedList testStack = new StackLinkedList();
-      assertTrue(testStack.length == 0);
-      assertTrue(testStack.maxSize == 10);
-      assertTrue(testStack.top == null);
+      Object answer;
+      int result;
+      
+      /* test the constructor */
+      result = testStack.getLength();
+      assertTrue(result == 0);
+      result = testStack.getMaxSize();
+      assertTrue(result == 10);
+      answer = testStack.top();
+      assertTrue(answer == null);
    }
    
    /**
@@ -35,13 +41,49 @@ public class StackLinkedListTest
    {
       StackLinkedList negStack = new StackLinkedList(-100);
       StackLinkedList goodStack = new StackLinkedList(100);
-      assertTrue(negStack.maxSize == 10);
-      assertTrue(negStack.top == null);
-      assertTrue(negStack.length == 0);
-      assertTrue(goodStack.maxSize == 100);
-      assertTrue(goodStack.top == null);
-      assertTrue(goodStack.length == 0);
+      int result;
+      Object answer;
+      
+      /* check the constructor with a negative maxLength */
+      result = negStack.getMaxSize();
+      assertTrue(result == 10);
+      result = negStack.getLength();
+      assertTrue(result == 0);
+      answer = negStack.top();
+      assertTrue(answer == null);
+      
+      /* check the constructor with a positive maxLength */
+      result = goodStack.getMaxSize();
+      assertTrue(result == 100);
+      result = goodStack.getLength();
+      assertTrue(result == 0);
+      answer = goodStack.top();
+      assertTrue(answer == null);
    }
+   
+   /**
+    * Test method for {@link stack.StackLinkedList#isEmpty()}.
+    */
+   @Test
+   public void testIsEmpty()
+   {
+      StackLinkedList testStack = new StackLinkedList();
+      Integer someObject1 = new Integer(1);
+      boolean answer;
+      int result;
+      
+      result = testStack.getLength();
+      assertTrue(result == 0);
+      answer = testStack.isEmpty();
+      assertTrue(answer == true);
+      
+      testStack.push(someObject1);
+      result = testStack.getLength();
+      assertTrue(result == 1);
+      answer = testStack.isEmpty();
+      assertTrue(answer == false);
+   }
+   
    /**
     * Test method for {@link stack.StackLinkedList#getMaxSize()}.
     */
@@ -55,6 +97,7 @@ public class StackLinkedListTest
       StackLinkedList overTenStack = new StackLinkedList(5000);
       int result;
       
+      /* check getting the maxLength */
       result = maxStack.getMaxSize();
       assertTrue(result == Integer.MAX_VALUE);
       result = minStack.getMaxSize();
@@ -66,6 +109,7 @@ public class StackLinkedListTest
       result = overTenStack.getMaxSize();
       assertTrue(result == 5000);
    }
+   
    /**
     * Test method for {@link stack.StackLinkedList#getLength()}.
     */
@@ -73,20 +117,47 @@ public class StackLinkedListTest
    public void testGetLength()
    {
       StackLinkedList someStack = new StackLinkedList(3);
-      ListNode someNode1 = new ListNode();
-      ListNode someNode2 = new ListNode();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
       int retVal;
       
-      retVal = someStack.push(someNode1);
+      retVal = someStack.push(someObject1);
       assertTrue(retVal == 1);
       retVal = someStack.getLength();
       assertTrue(retVal == 1);
       
-      retVal = someStack.push(someNode2);
+      retVal = someStack.push(someObject2);
       assertTrue(retVal == 2);
       retVal = someStack.getLength();
       assertTrue(retVal == 2);
    }
+   
+   /**
+    * Test method for {@link stack.StackLinkedList#top(Obecjt)}.
+    */
+   @Test
+   public void testTop()
+   {
+      StackLinkedList testStack = new StackLinkedList();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Integer answer;
+      
+      /* check that top is empty */
+      answer = (Integer)(testStack.top());
+      assertTrue(answer == null);
+      
+      /* push the first object and check top */
+      testStack.push(someObject1);
+      answer = (Integer)(testStack.top());
+      assertTrue(answer == someObject1);
+      
+      /* push another object and check top again */
+      testStack.push(someObject2);
+      answer = (Integer)(testStack.top());
+      assertTrue(answer == someObject2);
+   }
+   
    /**
     * Test method for {@link stack.StackLinkedList#push(linkedList.ListNode)}.
     */
@@ -94,29 +165,28 @@ public class StackLinkedListTest
    public void testPush()
    {
       int result;
+      Integer answer;
       StackLinkedList testStack = new StackLinkedList(2);
       Integer someObject1 = new Integer(1);
       Integer someObject2 = new Integer(2);
-      ListNode testNode1 = new ListNode(someObject1);
-      ListNode testNode2 = new ListNode(someObject2);
-      ListNode testNode3 = new ListNode(someObject2);
-      assertTrue(testStack.length == 0);
-      assertTrue(testStack.getLength() == 0);
-      assertTrue(testStack.top == null);
-      testNode1.setNodeNext(testNode2);
-      result = testStack.push(testNode1);
-      assertTrue(result == -1);
-      testNode1 = new ListNode(someObject1);
-      result = testStack.push(testNode1);
-      assertTrue(testStack.top == testNode1);
+      Integer someObject3 = new Integer(3);
+
+      result = testStack.getLength();
+      assertTrue(result == 0);
+      answer = (Integer)(testStack.top());
+      assertTrue(answer == null);
+      
+      result = testStack.push(someObject1);
+      answer = (Integer)(testStack.top());
+      assertTrue(answer == someObject1);
       assertTrue(result == 1);
-      result = testStack.push(testNode1);
-      assertTrue(result == -1);
-      result = testStack.push(testNode2);
-      assertTrue(testStack.top == testNode2);
-      assertTrue(testStack.top.getNodeNext() == testNode1);
+       
+      result = testStack.push(someObject2);
+      answer = (Integer)(testStack.top());
+      assertTrue(answer == someObject2);
       assertTrue(result == 2);
-      result = testStack.push(testNode3);
+      
+      result = testStack.push(someObject3);
       assertTrue(result == 0);
    }
    /**
@@ -126,32 +196,35 @@ public class StackLinkedListTest
    public void testPop()
    {
       int result;
-      ListNode poppedNode;
+      Integer answer;
       
       StackLinkedList testStack = new StackLinkedList(2);
       Integer someObject1 = new Integer(1);
       Integer someObject2 = new Integer(2);
-      ListNode testNode1 = new ListNode(someObject1);
-      ListNode testNode2 = new ListNode(someObject2);
-      testNode1 = new ListNode(someObject1);
-      result = testStack.push(testNode1);
-      assertTrue(testStack.top == testNode1);
+
+      /* Add the first object */
+      result = testStack.push(someObject1);
       assertTrue(result == 1);
 
-      result = testStack.push(testNode2);
-      assertTrue(testStack.top == testNode2);
-      assertTrue(testStack.top.getNodeNext() == testNode1);
+      /* Add the second object */
+      result = testStack.push(someObject2);
       assertTrue(result == 2);
       
-      poppedNode = testStack.pop();
-      assertTrue(poppedNode == testNode2);
-      assertTrue(testStack.length == 1);
-      poppedNode = testStack.pop();
-      assertTrue(poppedNode == testNode1);
-      assertTrue(testStack.length == 0);
-      poppedNode = testStack.pop();
-      assertTrue(poppedNode == null);
+      answer = (Integer)(testStack.pop());
+      assertTrue(answer == someObject2);
+      result = testStack.getLength(); 
+      assertTrue(result == 1);
+      
+      answer = (Integer)(testStack.pop());
+      assertTrue(answer == someObject1);
+      result = testStack.getLength();
+      assertTrue(result == 0);
+      
+      answer = (Integer)(testStack.pop());
+      assertTrue(answer == null);
+      
    }
+   
    /**
     * Test method for {@link stack.StackLinkedList#toString()}.
     */
@@ -179,13 +252,12 @@ public class StackLinkedListTest
          106, 107, 108,
          109
       };
-      ListNode[] nodeArray = new ListNode[10];
+      
       for (int ii = 0; ii < objectArray.length; ii++)
       {
          /* insert Integer Objects into the stack in order that they are 
            * in the array. This will result in a reverse order for the list. */
-         nodeArray[ii] = new ListNode(objectArray[ii]);
-         someStack.push(nodeArray[ii]);
+         someStack.push(objectArray[ii]);
       }
       result = expectedOutput.compareTo(someStack.toString());
       assertTrue(result == 0);
