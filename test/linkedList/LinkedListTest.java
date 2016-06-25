@@ -21,10 +21,16 @@ public class LinkedListTest
    public void testLinkedList()
    {
       LinkedList testLL = new LinkedList();
-      assertTrue(testLL.length == 0);
-      assertTrue(testLL.maxSize == 10);
-      assertTrue(testLL.head == null);
-      assertTrue(testLL.tail == null);
+      Object answer;
+      int result;
+      
+      /* test the constructor */
+      result = testLL.getLength();
+      assertTrue(result == 0);
+      result = testLL.getMaxSize();
+      assertTrue(result == 10);
+      answer = testLL.getFirst();
+      assertTrue(answer == null);
    }
 
    /**
@@ -33,18 +39,48 @@ public class LinkedListTest
    @Test
    public void testLinkedListInt()
    {
-      LinkedList negativeLL = new LinkedList(-100);
+      LinkedList negLL = new LinkedList(-100);
       LinkedList goodLL = new LinkedList(100);
-      assertTrue(negativeLL.maxSize == 10);
-      assertTrue(negativeLL.head == null);
-      assertTrue(negativeLL.tail == null);
-      assertTrue(negativeLL.length == 0);
-      assertTrue(goodLL.maxSize == 100);
-      assertTrue(goodLL.head == null);
-      assertTrue(goodLL.tail == null);
-      assertTrue(goodLL.length == 0);
+      
+      int result;
+      Object answer;
+      
+      /* check the constructor with a negative maxLength */
+      result = negLL.getMaxSize();
+      assertTrue(result == 10);
+      result = negLL.getLength();
+      assertTrue(result == 0);
+      answer = negLL.getFirst();
+      assertTrue(answer == null);
+      
+      /* check the constructor with a positive maxLength */
+      result = goodLL.getMaxSize();
+      assertTrue(result == 100);
+      result = goodLL.getLength();
+      assertTrue(result == 0);
+      answer = goodLL.getFirst();
+      assertTrue(answer == null);
    }
 
+   /**
+    * Test method for {@link linkedList.LinkedList#isEmpty()}.
+    */
+   @Test
+   public void testIsEmpty()
+   {
+      LinkedList testLL = new LinkedList();
+      Integer someObject1 = new Integer(1);
+      boolean result;
+      
+      /* test an empty list */
+      result = testLL.isEmpty();
+      assertTrue(result == true);
+      /* add an entry - test again */
+      testLL.addEntryToHead(someObject1);
+      result = testLL.isEmpty();
+      assertTrue(result == false);
+   }
+   
    /**
     * Test method for {@link linkedList.LinkedList#getMaxSize()}.
     */
@@ -52,15 +88,19 @@ public class LinkedListTest
    public void testGetMaxSize()
    {
       LinkedList maxLL = new LinkedList(Integer.MAX_VALUE);
+      LinkedList minLL = new LinkedList(Integer.MIN_VALUE);
       LinkedList zeroLL = new LinkedList(0);
       LinkedList lessThanTenLL = new LinkedList(5);
       LinkedList overTenLL = new LinkedList(5000);
       int result;
       
+      /* check getting the maxLength */
       result = maxLL.getMaxSize();
       assertTrue(result == Integer.MAX_VALUE);
+      result = minLL.getMaxSize();
+      assertTrue(result == 10);
       result = zeroLL.getMaxSize();
-      assertTrue(zeroLL.maxSize == 10);
+      assertTrue(result == 10);
       result = lessThanTenLL.getMaxSize();
       assertTrue(result == 5);
       result = overTenLL.getMaxSize();
@@ -73,23 +113,64 @@ public class LinkedListTest
    @Test
    public void testGetLength()
    {
-      LinkedList someList = new LinkedList(3);
-      ListNode someNode1 = new ListNode();
-      ListNode someNode2 = new ListNode();
+      LinkedList someLL = new LinkedList(3);
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
       int retVal;
       
-      retVal = someList.addEntryToHead(someNode1);
+      retVal = someLL.addEntryToHead(someObject1);
       assertTrue(retVal == 1);
-      retVal = someList.getLength();
+      retVal = someLL.getLength();
       assertTrue(retVal == 1);
       
-      retVal = someList.addEntryToHead(someNode2);
+      retVal = someLL.addEntryToHead(someObject2);
       assertTrue(retVal == 2);
-      retVal = someList.getLength();
+      retVal = someLL.getLength();
       assertTrue(retVal == 2);
-      
    }
 
+   /**
+    * Test method for {@link linkedList.LinkedList#getFirst()}.
+    */
+   @Test
+   public void testGetFirst()
+   {
+      LinkedList testLL = new LinkedList();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Object answer;
+      
+      /* test an empty list */
+      answer = testLL.getFirst();
+      assertTrue(answer == null);
+      /* add 2 entries - test again */
+      testLL.addEntryToHead(someObject1);
+      testLL.addEntryToHead(someObject2);
+      answer = testLL.getFirst();
+      assertTrue(answer == someObject2);
+   }
+   
+   /**
+    * Test method for {@link linkedList.LinkedList#getLast()}.
+    */
+   @Test
+   public void testGetLast()
+   {
+      LinkedList testLL = new LinkedList();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Object answer;
+      
+      /* test an empty list */
+      answer = testLL.getLast();
+      assertTrue(answer == null);
+      /* add 2 entries - test again */
+      testLL.addEntryToHead(someObject1);
+      testLL.addEntryToHead(someObject2);
+      answer = testLL.getLast();
+      assertTrue(answer == someObject1);
+   }
+   
    /**
     * Test method for {@link linkedList.LinkedList#addEntryToHead(linkedList.ListNode)}.
     */
@@ -97,30 +178,23 @@ public class LinkedListTest
    public void testAddEntryToHead()
    {
       int result;
+      Integer answer;
       LinkedList testLL = new LinkedList(2);
       Integer someObject1 = new Integer(1);
       Integer someObject2 = new Integer(2);
-      ListNode testNode1 = new ListNode(someObject1);
-      ListNode testNode2 = new ListNode(someObject2);
-      ListNode testNode3 = new ListNode(someObject2);
-      assertTrue(testLL.length == 0);
-      assertTrue(testLL.getLength() == 0);
-      assertTrue(testLL.head == null);
-      assertTrue(testLL.tail == null);
-      testNode1.setNodeNext(testNode2);
-      result = testLL.addEntryToHead(testNode1);
-      assertTrue(result == -1);
-      testNode1 = new ListNode(someObject1);
-      result = testLL.addEntryToHead(testNode1);
-      assertTrue(testLL.head == testNode1);
+      Integer someObject3 = new Integer(3);
+      
+      result = testLL.addEntryToHead(someObject1);
+      answer = (Integer)(testLL.getFirst());
+      assertTrue(answer == someObject1);
       assertTrue(result == 1);
-      result = testLL.addEntryToHead(testNode1);
-      assertTrue(result == -1);
-      result = testLL.addEntryToHead(testNode2);
-      assertTrue(testLL.head == testNode2);
-      assertTrue(testLL.head.getNodeNext() == testNode1);
+       
+      result = testLL.addEntryToHead(someObject2);
+      answer = (Integer)(testLL.getFirst());
+      assertTrue(answer == someObject2);
       assertTrue(result == 2);
-      result = testLL.addEntryToHead(testNode3);
+      
+      result = testLL.addEntryToHead(someObject3);
       assertTrue(result == 0);
    }
 
@@ -131,31 +205,68 @@ public class LinkedListTest
    public void testAddEntryToTail()
    {
       int result;
+      Integer answer;
       LinkedList testLL = new LinkedList(2);
       Integer someObject1 = new Integer(1);
       Integer someObject2 = new Integer(2);
-      ListNode testNode1 = new ListNode(someObject1);
-      ListNode testNode2 = new ListNode(someObject2);
-      ListNode testNode3 = new ListNode(someObject2);
-      assertTrue(testLL.length == 0);
-      assertTrue(testLL.getLength() == 0);
-      assertTrue(testLL.head == null);
-      assertTrue(testLL.tail == null);
-      testNode1.setNodeNext(testNode2);
-      result = testLL.addEntryToTail(testNode1);
-      assertTrue(result == -1);
-      testNode1 = new ListNode(someObject1);
-      result = testLL.addEntryToTail(testNode1);
-      assertTrue(testLL.head == testNode1);
-      assertTrue(testLL.tail == testNode1);
+      Integer someObject3 = new Integer(3);
+      
+      result = testLL.addEntryToTail(someObject1);
+      answer = (Integer)(testLL.getLast());
+      assertTrue(answer == someObject1);
       assertTrue(result == 1);
-      result = testLL.addEntryToTail(testNode1);
-      assertTrue(result == -1);
-      result = testLL.addEntryToTail(testNode2);
-      assertTrue(testLL.head == testNode1);
-      assertTrue(testLL.tail == testNode2);
+       
+      result = testLL.addEntryToTail(someObject2);
+      answer = (Integer)(testLL.getLast());
+      assertTrue(answer == someObject2);
       assertTrue(result == 2);
-      result = testLL.addEntryToTail(testNode3);
+      
+      result = testLL.addEntryToTail(someObject3);
+      assertTrue(result == 0);
+   }
+   
+   /**
+    * Test method for {@link linkedList.LinkedList#removeEntry(Object)}.
+    */
+   @Test
+   public void testRemoveEntry()
+   {
+      int result;
+      Integer answer;
+      LinkedList testLL = new LinkedList(5);
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Integer someObject3 = new Integer(3);
+      Integer someObject4 = new Integer(4);
+      
+      /* start with an emptry list */
+      answer = (Integer)testLL.removeEntry(someObject1);
+      assertTrue(answer == null);
+      
+      /* fill in the table */
+      result = testLL.addEntryToHead(someObject1);
+      result = testLL.addEntryToHead(someObject2);
+      result = testLL.addEntryToHead(someObject3);
+      assertTrue(result == 3);
+      
+      /* try to remove an object that isn't in the list */
+      answer = (Integer)testLL.removeEntry(someObject4);
+      assertTrue(answer == null);
+      
+      /* remove the middle object */
+      answer = (Integer)testLL.removeEntry(someObject2);
+      assertTrue(answer == someObject2);
+      
+      /* remove the tail object */
+      answer = (Integer)testLL.removeEntry(someObject3);
+      assertTrue(answer == someObject3);
+      
+      /* remove the head object */
+      answer = (Integer)testLL.removeEntry(someObject1);
+      assertTrue(answer == someObject1);
+      
+      /* check the length */
+      result = testLL.getLength();
       assertTrue(result == 0);
    }
    
@@ -183,13 +294,11 @@ public class LinkedListTest
                                103, 104, 105, 
                                106, 107, 108, 
                                109};
-      ListNode[] nodeArray = new ListNode[10];
       for(int ii = 0; ii < objectArray.length; ii++)
       {
          /* insert Integer Objects into the linked list in order that they are 
           * in the array. This will result in a reverse order for the list. */
-         nodeArray[ii] = new ListNode(objectArray[ii]);
-         someList.addEntryToHead(nodeArray[ii]);
+         someList.addEntryToHead(objectArray[ii]);
       }
       result = expectedOutput.compareTo(someList.toString());
       assertTrue(result == 0);
@@ -222,13 +331,15 @@ public class LinkedListTest
       /* create a list of 10 elements */
       LinkedList someList = new LinkedList();
       LinkedList otherList = new LinkedList();
-      Integer[] objectArray = {100, 101, 102, 
+      Integer[] objectArray1 = {100, 101, 102, 
                                103, 104, 105, 
                                106, 107, 108, 
                                109};
-      ListNode[] nodeArray1 = new ListNode[10];
-      ListNode[] nodeArray2 = new ListNode[10];
-      for(int ii = 0; ii < objectArray.length; ii++)
+      Integer[] objectArray2 = {100, 101, 102, 
+                               103, 104, 105, 
+                               106, 107, 108, 
+                               109};
+      for(int ii = 0; ii < objectArray1.length; ii++)
       {
          /* insert Integer Objects into the linked list in order that they are 
           * in the array. This will result in a reverse order for the list. 
@@ -236,11 +347,8 @@ public class LinkedListTest
           * expects that ListNodes being inserted into a LinkedList are not 
           * part of another list - that their listNode.next parameter is null.
           */
-         nodeArray1[ii] = new ListNode(objectArray[ii]);
-         nodeArray2[ii] = new ListNode(objectArray[ii]);
-         
-         someList.addEntryToHead(nodeArray1[ii]);
-         otherList.addEntryToHead(nodeArray2[ii]);
+         someList.addEntryToHead(objectArray1[ii]);
+         otherList.addEntryToHead(objectArray2[ii]);
       }
       
       result = someList.equals(otherList);
@@ -260,14 +368,19 @@ public class LinkedListTest
       LinkedList otherList = new LinkedList();
       LinkedList bigList = new LinkedList(20);
       LinkedList emptyList = new LinkedList();
-      Integer[] objectArray = {100, 101, 102, 
+      Integer[] objectArray1 = {100, 101, 102, 
                                103, 104, 105, 
                                106, 107, 108, 
                                109};
-      ListNode[] nodeArray1 = new ListNode[10];
-      ListNode[] nodeArray2 = new ListNode[10];
-      ListNode[] nodeArray3 = new ListNode[10];
-      for(int ii = 0; ii < objectArray.length; ii++)
+      Integer[] objectArray2 = {100, 101, 102, 
+                               103, 104, 105, 
+                               106, 107, 108, 
+                               109};
+      Integer[] objectArray3 = {100, 101, 102, 
+                               103, 104, 105, 
+                               106, 107, 108, 
+                               109};
+      for(int ii = 0; ii < objectArray1.length; ii++)
       {
          /* insert Integer Objects into the linked list in order that they are 
           * in the array. This will result in a reverse order for the list.
@@ -277,13 +390,9 @@ public class LinkedListTest
           * expects that ListNodes being inserted into a LinkedList are not 
           * part of another list - that their listNode.next parameter is null.
           */
-         nodeArray1[ii] = new ListNode(objectArray[ii]);
-         nodeArray2[ii] = new ListNode(objectArray[ii]);
-         nodeArray3[ii] = new ListNode(objectArray[ii]);
-         
-         someList.addEntryToHead(nodeArray1[ii]);
-         otherList.addEntryToTail(nodeArray2[ii]);
-         bigList.addEntryToHead(nodeArray3[ii]);
+         someList.addEntryToHead(objectArray1[ii]);
+         otherList.addEntryToTail(objectArray2[ii]);
+         bigList.addEntryToHead(objectArray3[ii]);
       }
       
       result = someList.equals(otherList);
