@@ -5,8 +5,9 @@
  */
 package binaryTree;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
+
 
 /**
  *
@@ -14,7 +15,21 @@ import static org.junit.Assert.*;
  */
 public class BinaryTreeTest {
     
-    public BinaryTreeTest() {
-    }
+   /**
+    * Test method for {@link binaryTree.BinaryTree#BinaryTree()}.
+    */
+   @Test
+   public void testBinaryTree()
+   {
+      BinaryTree testTree = new BinaryTree();
+      Object answer;
+      int result;
+      
+      /* test the constructor */
+      result = testTree.getSize();
+      assertTrue(result == 0);
+      answer = testTree.getRoot();
+      assertTrue(answer == null);
+   }
     
 }
