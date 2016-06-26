@@ -8,10 +8,9 @@ package binaryTree;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-
 /**
  *
- * @author mcdonasc
+ * @author Jon Cronin and Scott McDonald
  */
 public class BinaryTreeTest {
     
@@ -31,5 +30,112 @@ public class BinaryTreeTest {
       answer = testTree.getRoot();
       assertTrue(answer == null);
    }
-    
+   
+   /**
+    * Test method for {@link binaryTree.BinaryTree#add(Object)}.
+    */
+   @Test
+   public void testAdd()
+   {
+      BinaryTree testTree = new BinaryTree();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Integer someObject3 = new Integer(3);
+      Integer someObject4 = new Integer(3);
+      int result;
+      
+      result = testTree.add(someObject2);
+      assertTrue(result == 1);
+      result = testTree.add(someObject1);
+      assertTrue(result == 2);
+      result = testTree.add(someObject3);
+      assertTrue(result == 3);
+      result = testTree.add(someObject4);
+      assertTrue(result == -1);
+   }
+   
+   /**
+    * Test method for {@link binaryTree.BinaryTree#getSize()}.
+    */
+   @Test
+   public void testGetSize()
+   {
+      BinaryTree testTree = new BinaryTree();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Integer someObject3 = new Integer(3);
+      Integer someObject4 = new Integer(3);
+      int result;
+      
+      result = testTree.add(someObject1);
+      result = testTree.add(someObject2);
+      result = testTree.add(someObject3);
+      result = testTree.getSize();
+      assertTrue(result == 3);
+   }
+   
+   /**
+    * Test method for {@link binaryTree.BinaryTree#getRoot()}.
+    */
+   @Test
+   public void testGetRoot()
+   {
+      BinaryTree testTree = new BinaryTree();
+      Integer someObject1 = new Integer(1);
+      Integer answer;
+      
+      answer = (Integer)testTree.getRoot();
+      assertTrue(answer == null);
+      
+      testTree.add(someObject1);
+      answer = (Integer)testTree.getRoot();
+      assertTrue(answer == someObject1);
+   }
+   
+   /**
+    * Test method for {@link binaryTree.BinaryTree#isEmpty()}.
+    */
+   @Test
+   public void testIsEmpty()
+   {
+      BinaryTree testTree = new BinaryTree();
+      Integer someObject1 = new Integer(1);
+      boolean result;
+      
+      result = testTree.isEmpty();
+      assertTrue(result == true);
+      
+      testTree.add(someObject1);
+      result = testTree.isEmpty();
+      assertTrue(result == false);
+   }
+   
+   /**
+    * Test method for {@link binaryTree.BinaryTree#Contains(Object)}.
+    */
+   @Test
+   public void testContains()
+   {
+      BinaryTree testTree = new BinaryTree();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Integer someObject3 = new Integer(3);
+      Integer someObject4 = new Integer(3);
+      Integer someObject5 = new Integer(1);
+      Integer someObject6 = new Integer(6);
+      boolean result;
+      
+      testTree.add(someObject2);
+      testTree.add(someObject1);
+      testTree.add(someObject3);
+
+      result = testTree.contains(someObject4);
+      assertTrue(result == true);
+      
+      result = testTree.contains(someObject5);
+      assertTrue(result == true);
+      
+      result = testTree.contains(someObject6);
+      assertTrue(result == false);
+   }
 }

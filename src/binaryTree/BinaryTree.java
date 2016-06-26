@@ -13,7 +13,7 @@ package binaryTree;
  * @author Jon Cronin and Scott McDonald
  * @param <E> This BinaryTree Class supports elements of any Object type.
  */
-public class BinaryTree<E>
+public class BinaryTree<E extends Comparable> 
 {
    /**
     * This private BTreeNode class is a basic node object to be used with the 
@@ -21,7 +21,7 @@ public class BinaryTree<E>
     * type of tree.
     * @param <E> 
     */
-   private static class BTreeNode<E>
+   private class BTreeNode<E extends Comparable>
    {
       private E data;
       private BTreeNode<E> parent;
@@ -135,14 +135,23 @@ public class BinaryTree<E>
    public BinaryTree()
    {
       this.root = null;
+      this.root = null;
       this.size = 0;
    }
    
+   /**
+    * 
+    * @return 
+    */
    public int getSize()
    {
       return this.size;
    }
    
+   /**
+    * 
+    * @return 
+    */
    public E getRoot()
    {
       if(this.isEmpty())
@@ -151,8 +160,101 @@ public class BinaryTree<E>
       }
       return this.root.getData();
    }
+   
+   /**
+    * 
+    * @return 
+    */
    public boolean isEmpty()
    {
       return (this.size == 0);
+   }
+   
+   /**
+    * 
+    * @param someData
+    * @return 
+    */
+   public int add(E someData)
+   {
+      int treeSize = this.size;
+      this.root = insertInSubtree(someData, this.root);
+      if(treeSize < this.size)
+         return this.size;
+      else
+         return -1;
+   }
+   
+   /**
+    * 
+    * @param someData
+    * @param subRoot
+    * @return 
+    */
+   private BTreeNode<E> insertInSubtree(E someData, BTreeNode<E> subRoot)
+   {
+      int compareResult;
+      if(subRoot == null)
+      {
+         this.size++;
+         return new BTreeNode<>(someData, null, null, null);
+      }
+      
+      compareResult = someData.compareTo(subRoot.getData());
+      
+      switch(compareResult)
+      {
+         case -1:
+            subRoot.setLeftChild(insertInSubtree(someData, subRoot.leftChild));
+            break;
+         case 1:
+            subRoot.setRightChild(insertInSubtree(someData, subRoot.rightChild));
+            break;
+         default:
+            // someData is already in the tree.
+            break;
+      }
+      return subRoot;
+   }
+   
+   /**
+    * 
+    * @param someData
+    * @return 
+    */
+   public boolean contains(E someData)
+   {
+      return isInSubtree(someData, this.root);
+   }
+   
+   /**
+    * 
+    * @param someData
+    * @param subRoot
+    * @return 
+    */
+   private boolean isInSubtree(E someData, BTreeNode<E> subRoot)
+   {
+      int compareResult;
+      boolean result;
+      if(subRoot == null)
+         return false;
+      
+      compareResult = someData.compareTo(subRoot.getData());
+      
+      switch(compareResult)
+      {
+         case -1:
+            result = isInSubtree(someData, subRoot.leftChild);
+            break;
+         case 1:
+            result = isInSubtree(someData, subRoot.rightChild);
+            break;
+         case 0:
+         default:
+            result = true;
+            break;
+      }
+      return result;
    }
 }
