@@ -135,7 +135,6 @@ public class BinaryTree<E extends Comparable>
    public BinaryTree()
    {
       this.root = null;
-      this.root = null;
       this.size = 0;
    }
    
