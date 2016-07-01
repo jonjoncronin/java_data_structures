@@ -138,4 +138,45 @@ public class BinaryTreeTest {
       result = testTree.contains(someObject6);
       assertTrue(result == false);
    }
+   
+      /**
+    * Test method for {@link binaryTree.BinaryTree#toString()}.
+    */
+   @Test
+   public void testToString()
+   {
+      String expectedOutput = "This tree of size 3 contains  \n" +
+                              "Data: 2\n" +
+                              "Data: 1\n" +
+                              "Data: 3\n";
+      int result;
+      /* create a tree of 3 elements */
+      BinaryTree testTree = new BinaryTree();
+      Integer someObject1 = new Integer(1);
+      Integer someObject2 = new Integer(2);
+      Integer someObject3 = new Integer(3);
+      
+      testTree.add(someObject2);
+      testTree.add(someObject1);
+      testTree.add(someObject3);
+      
+      result = expectedOutput.compareTo(testTree.toString());
+      assertTrue(result == 0);
+   }
+   
+   /**
+    * Test method for {@link binaryTree.BinaryTree#toString()}
+    * on an empty list.
+    */
+   @Test
+   public void testToStringEmptyList()
+   {
+      String expectedOutput = "This tree of size 0 contains  \n" +
+                              "nothing\n";
+      int result;
+      /* create a list of 10 elements */
+      BinaryTree testTree = new BinaryTree();
+      result = expectedOutput.compareTo(testTree.toString());
+      assertTrue(result == 0);
+   }
 }

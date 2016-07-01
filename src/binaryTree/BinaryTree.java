@@ -1,4 +1,6 @@
 package binaryTree;
+import java.util.*;
+
 
 /**
  * 
@@ -123,6 +125,17 @@ public class BinaryTree<E extends Comparable>
       public void setRightChild(BTreeNode<E> someNode)
       {
          this.rightChild = someNode;
+      }
+      
+      /**
+       * Overriden function to return a string describing this node.
+       *
+       * @return String in the format of "Data: [Object.toString]"
+       */
+      @Override
+      public String toString()
+      {
+         return ("Data: " + this.data.toString());
       }
    }
    
@@ -255,5 +268,41 @@ public class BinaryTree<E extends Comparable>
             break;
       }
       return result;
+   }
+   
+   /**
+    * Overriden function to return a string describing this BinaryTree.
+    *
+    * @return String in the format of "This tree of size [length] contains\n
+    * Data: [Object.toString]". Output of the tree is down with a breadth-first
+    * traversal giving the output from the root on up/down the tree by level.
+    */
+   @Override
+   public String toString()
+   {
+      LinkedList childQueue = new LinkedList();
+      BTreeNode<E> node;
+      StringBuilder output = new StringBuilder();
+      
+      output.append("This tree of size " + this.size + " contains  \n");
+      if(this.isEmpty())
+      {
+         output.append("nothing\n");
+      }
+      else
+      {
+         childQueue.addFirst(this.root);
+         while(!childQueue.isEmpty())
+         {
+            node = (BTreeNode)childQueue.removeLast();
+            output.append(node.toString() + "\n");
+            if(node.leftChild != null)
+               childQueue.addFirst(node.leftChild);
+            if(node.rightChild != null)
+               childQueue.addFirst(node.rightChild);
+         }
+      }
+      
+      return output.toString();
    }
 }
